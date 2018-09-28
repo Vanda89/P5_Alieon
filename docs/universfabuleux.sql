@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14.8
--- http://www.phpmyadmin.net
+-- version 4.6.6deb4
+-- https://www.phpmyadmin.net/
 --
--- Client :  db749289409.db.1and1.com
--- Généré le :  Jeu 27 Septembre 2018 à 16:05
--- Version du serveur :  5.5.60-0+deb7u1-log
--- Version de PHP :  5.4.45-0+deb7u14
+-- Client :  localhost:3306
+-- Généré le :  Ven 28 Septembre 2018 à 21:05
+-- Version du serveur :  10.1.26-MariaDB-0+deb9u1
+-- Version de PHP :  7.0.30-0+deb9u1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `db749289409`
+-- Base de données :  `universfabuleux`
 --
 
 -- --------------------------------------------------------
@@ -26,11 +26,10 @@ SET time_zone = "+00:00";
 -- Structure de la table `avatar`
 --
 
-CREATE TABLE IF NOT EXISTS `avatar` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `avatar_picture` blob NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+CREATE TABLE `avatar` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `avatar_picture` blob NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `avatar`
@@ -61,12 +60,11 @@ INSERT INTO `avatar` (`id`, `avatar_picture`) VALUES
 -- Structure de la table `game`
 --
 
-CREATE TABLE IF NOT EXISTS `game` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `game` (
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(45) NOT NULL,
-  `style` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `style` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `game`
@@ -82,22 +80,21 @@ INSERT INTO `game` (`id`, `name`, `style`) VALUES
 -- Structure de la table `news`
 --
 
-CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news` (
+  `id` int(10) UNSIGNED NOT NULL,
   `creation_date` date NOT NULL,
   `title` varchar(64) NOT NULL,
-  `content` tinytext NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `content` tinytext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `news`
 --
 
 INSERT INTO `news` (`id`, `creation_date`, `title`, `content`) VALUES
-(1, '2018-09-09', 'Nouveau jeu : Tape-lettre', 'Le Tape-lettre vient d''être ajouté à coté du Memory et vous pouvez dès à présent y jouer. Bientôt vous retrouverez les lettres de l''alphabet sur le clavier les yeux fermés !'),
+(1, '2018-09-09', 'Nouveau jeu : Tape-lettre', 'Le Tape-lettre vient d\'être ajouté à coté du Memory et vous pouvez dès à présent y jouer. Bientôt vous retrouverez les lettres de l\'alphabet sur le clavier les yeux fermés !'),
 (2, '2018-09-19', 'Ajout des deux thèmes : Espace et Château fleuri', 'Pour les utilisateurs ayant un compte sur le site, les deux nouveaux thèmes Espace et Château fleuri ont été ajoutés à la liste.\r\nPour les autres, demander à vos parents leur autorisation pour vous inscrire.'),
-(3, '2018-09-22', 'Nouveau jeu en préparation : Image Mystère', 'Le nouveau jeu Image Mystère est actuellement en préparation et sortira le 10 octobre prochain. \r\nVous pourrez vous amuser à manipuler la souris pour découvrir plusieurs séries d''images. Encore un peu de patience...');
+(3, '2018-09-22', 'Nouveau jeu en préparation : Image Mystère', 'Le nouveau jeu Image Mystère est actuellement en préparation et sortira le 10 octobre prochain. \r\nVous pourrez vous amuser à manipuler la souris pour découvrir plusieurs séries d\'images. Encore un peu de patience...');
 
 -- --------------------------------------------------------
 
@@ -105,17 +102,15 @@ INSERT INTO `news` (`id`, `creation_date`, `title`, `content`) VALUES
 -- Structure de la table `stats`
 --
 
-CREATE TABLE IF NOT EXISTS `stats` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `stats` (
+  `id` int(10) UNSIGNED NOT NULL,
   `game_name` varchar(64) NOT NULL,
   `play_date` datetime NOT NULL,
   `game_mode` varchar(64) NOT NULL,
   `score` int(11) NOT NULL,
   `game_time` time NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `stats`
@@ -140,11 +135,10 @@ INSERT INTO `stats` (`id`, `game_name`, `play_date`, `game_mode`, `score`, `game
 -- Structure de la table `theme`
 --
 
-CREATE TABLE IF NOT EXISTS `theme` (
+CREATE TABLE `theme` (
   `id` tinyint(4) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `style` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`)
+  `style` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -166,19 +160,16 @@ INSERT INTO `theme` (`id`, `name`, `style`) VALUES
 -- Structure de la table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `id` int(10) UNSIGNED NOT NULL,
   `firstname` varchar(45) NOT NULL,
   `birthday` date NOT NULL,
   `mail` varchar(45) NOT NULL,
   `password` varchar(100) NOT NULL,
   `is_admin` int(11) NOT NULL,
-  `theme_id` int(10) unsigned NOT NULL DEFAULT '1',
-  `avatar_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `theme_id` (`theme_id`),
-  KEY `avatar_id` (`avatar_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+  `theme_id` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `avatar_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `user`
@@ -186,8 +177,81 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `firstname`, `birthday`, `mail`, `password`, `is_admin`, `theme_id`, `avatar_id`) VALUES
 (8, 'Sandrine', '1989-05-20', 'sandrinealcazar@gmail.com', '$2y$10$dyGnJheMTtTtXMOD606SDePXnGbWPVVAywAtLh4Qw83TyWOvS7vvS', 1, 7, 8),
-(9, 'olivier', '1980-11-09', 'omalige@gmail.com', '$2y$10$tgJ2gJPP4vDyjBljERXsNeRwAPeHkgOtcxqk1uFWx.yjS2Pv2EnAe', 2, 2, 8);
+(9, 'olivier', '1980-11-09', 'omalige@gmail.com', '$2y$10$tgJ2gJPP4vDyjBljERXsNeRwAPeHkgOtcxqk1uFWx.yjS2Pv2EnAe', 2, 2, 8),
+(14, 'Olivier', '1980-11-09', 'arknoid80@gg.fr', '$2y$10$oRVBrOgkU3rVG23nu4ucE.3mzgOwgWrU/6OTcNARZZjzjsylVdG9G', 2, 7, 1);
 
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `avatar`
+--
+ALTER TABLE `avatar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `game`
+--
+ALTER TABLE `game`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `stats`
+--
+ALTER TABLE `stats`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Index pour la table `theme`
+--
+ALTER TABLE `theme`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `theme_id` (`theme_id`),
+  ADD KEY `avatar_id` (`avatar_id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `avatar`
+--
+ALTER TABLE `avatar`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT pour la table `game`
+--
+ALTER TABLE `game`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `stats`
+--
+ALTER TABLE `stats`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
